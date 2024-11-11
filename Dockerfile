@@ -1,5 +1,5 @@
 FROM alpine:latest
-MAINTAINER lee1080 <437147069@qq.com>
+MAINTAINER slk1133 <slk1133@qq.com>
 RUN apk update
 RUN apk add --no-cache bash jq wget curl tar sed gawk coreutils dcron
 RUN apk --update add tzdata && \
@@ -8,6 +8,8 @@ RUN apk --update add tzdata && \
     apk del tzdata && \
     rm -rf /var/cache/apk/*
 WORKDIR /app
-COPY /app .
+COPY ./config.conf .
+COPY ./start.sh .
+COPY ./cf_ddns .
 RUN chmod +x /app/start.sh
 CMD ["/bin/sh", "-c", "/app/start.sh && tail -f /dev/null"]
