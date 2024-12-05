@@ -11,5 +11,5 @@ WORKDIR /app
 COPY ./config.conf .
 COPY ./start.sh .
 COPY ./cf_ddns .
-RUN chmod +x /app/start.sh
+RUN chmod +x /app/start.sh && chmod +x /app/cf_ddns/*.sh
 CMD ["/bin/sh", "-c", "/app/start.sh && tail -f /dev/null"]
